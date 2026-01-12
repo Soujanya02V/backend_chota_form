@@ -3,15 +3,21 @@ import { useState } from "react";
 function App(){
   const[name,setName] = useState("");
   const [message,setMessage] = useState();
+  const[success,setSuccess] = useState();
+  const[error,setError] = useState();
+  
 
   const handleSubmit = async(e) =>{
     e.preventDefault();
+    setSuccess("");
+    setError("")
     const data = {
       name,
       message,
     };
 
-    const response = await fetch("http://localhost:3000/contact",{
+     try {
+      const response = await fetch("http://localhost:3000/contact",{
       method : "POST",
       headers:
       {
@@ -22,15 +28,27 @@ function App(){
 
     });
 
+    if(!response.ok){
+      throw new Error("something went wrong");
+    }
+
     const result = await response.json();
     console.log(result);
 
+    setSuccess("data submitted succeessfully");
+    setName("");
+    setMessage("");
+
+  }catch(err){
+    setError("failed to submit !! try again")
+  }
   };
 
   return(
         <div style={{ padding: "20px" }}>
       <h1>React Contact Form</h1>
-
+        {success && <p style={{ color: "green" }}>{success}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name</label>
