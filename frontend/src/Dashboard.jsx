@@ -13,7 +13,7 @@ function Dashboard() {
       return;
     }
 
-    fetch("http://localhost:3000/admin/dashboard", {
+    fetch("`${import.meta.env.VITE_BACKEND_URI}/admin/dashboard`", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -9,7 +9,7 @@ function AdminLogin() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3000/admin/login", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URI}/admin/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),

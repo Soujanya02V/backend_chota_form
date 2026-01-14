@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "./AdminLogin";
 import Dashboard from "./Dashboard";
-import ContactForm from "./ContactForm"; // rename old App form
+import ContactForm from "./ContactForm"; 
 
 function App() {
   return (
