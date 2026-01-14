@@ -1,82 +1,18 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminLogin from "./AdminLogin";
+import Dashboard from "./Dashboard";
+import ContactForm from "./ContactForm"; // rename old App form
 
-function App(){
-  const[name,setName] = useState("");
-  const [message,setMessage] = useState();
-  const[success,setSuccess] = useState();
-  const[error,setError] = useState();
-  
-
-  const handleSubmit = async(e) =>{
-    e.preventDefault();
-    setSuccess("");
-    setError("")
-    const data = {
-      name,
-      message,
-    };
-
-     try {
-      const response = await fetch("http://localhost:3000/contact",{
-      method : "POST",
-      headers:
-      {
-        "Content-Type" :"application/json",
-      },
-      body: JSON.stringify(data)
-
-
-    });
-
-    if(!response.ok){
-      throw new Error("something went wrong");
-    }
-
-    const result = await response.json();
-    console.log(result);
-
-    setSuccess("data submitted succeessfully");
-    setName("");
-    setMessage("");
-
-  }catch(err){
-    setError("failed to submit !! try again")
-  }
-  };
-
-  return(
-        <div style={{ padding: "20px" }}>
-      <h1>React Contact Form</h1>
-        {success && <p style={{ color: "green" }}>{success}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name</label>
-          <br />
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label>Message</label>
-          <br />
-          <textarea
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          />
-        </div>
-
-        <br />
-
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  )
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ContactForm />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
