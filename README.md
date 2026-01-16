@@ -1,4 +1,4 @@
-📌 Full Stack Admin Dashboard (JWT Auth)
+#Full Stack Admin Dashboard (JWT Auth)
 
 A full-stack web application with a JWT-protected admin dashboard that allows admins to securely view, delete, and search user-submitted contact data stored in MongoDB.
 
@@ -130,7 +130,10 @@ HTTP-only cookies for JWT
 
 UI improvements
 
+
+
 📌 Author
 
 Soujanya
+
 
