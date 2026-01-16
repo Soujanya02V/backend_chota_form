@@ -79,6 +79,14 @@ app.get("/admin/dashboard", authMiddleware, (req, res) => {
   res.json({ message: "Welcome to Admin Dashboard" });
 });
 
+app.get("/admin/contacts", authMiddleware, async(req,res) => {
+    try{
+        const contacts = await Contact.find().sort({createdAt: -1});
+        res.json(contacts);
+    }catch(err){
+        res.status(500).json({ message: "Failed to fetch contacts" });
+    }
+})
 
 const PORT = process.env.PORT||3000;
 app.listen(PORT, () =>{
