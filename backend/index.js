@@ -88,6 +88,18 @@ app.get("/admin/contacts", authMiddleware, async(req,res) => {
     }
 })
 
+app.delete("/admin/contacts/:id",authMiddleware,async(req,res)=>{
+    try{
+        const{id} = req.params;
+        await Contact.findByIdAndDelete(id);
+         res.json({ message: "Contact deleted successfully" });
+    }catch(err){
+        console.error(err);
+    res.status(500).json({ message: "Failed to delete contact" });
+  
+    }
+})
+
 const PORT = process.env.PORT||3000;
 app.listen(PORT, () =>{
     console.log(`server running on port ${PORT}`);
