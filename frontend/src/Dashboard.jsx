@@ -5,6 +5,8 @@ function Dashboard() {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -61,6 +63,11 @@ function Dashboard() {
     }
   };
 
+  const filteredContacts = contacts.filter((contact) =>
+  contact.name.toLowerCase().includes(search.toLowerCase()) ||
+  contact.message.toLowerCase().includes(search.toLowerCase())
+);
+
 
   if (loading) return <h2>Loading contacts...</h2>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
@@ -68,6 +75,17 @@ function Dashboard() {
   return (
     <div style={{ padding: "20px" }}>
       <h1>Admin Dashboard</h1>
+      <input
+  type="text"
+  placeholder="Search by name or message..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  style={{
+    marginBottom: "15px",
+    padding: "8px",
+    width: "300px",
+  }}
+/>
 
       {contacts.length === 0 ? (
         <p>No contact submissions found</p>
@@ -82,7 +100,7 @@ function Dashboard() {
             </tr>
           </thead>
           <tbody>
-            {contacts.map((contact) => (
+            {filteredContacts.map((contact) => (
               <tr key={contact._id}>
                 <td>{contact.name}</td>
                 <td>{contact.message}</td>
