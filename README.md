@@ -54,28 +54,7 @@ bcryptjs
 
 dotenv
 
-📂 Project Structure
-project-root
-│
-├── frontend
-│   ├── src
-│   │   ├── App.jsx
-│   │   ├── AdminLogin.jsx
-│   │   ├── Dashboard.jsx
-│   │   └── ContactForm.jsx
-│   └── .env
-│
-├── backend
-│   ├── models
-│   │   ├── Admin.js
-│   │   └── Contact.js
-│   ├── middleware
-│   │   └── auth.js
-│   ├── index.js
-│   ├── createAdmin.js
-│   └── .env
-│
-└── README.md
+
 
 🔑 Environment Variables
 Backend (backend/.env)
@@ -84,7 +63,7 @@ MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
 
 Frontend (frontend/.env)
-VITE_BACKEND_URI=http://localhost:3001
+VITE_BACKEND_URI=http://localhost:3000
 
 ▶️ How to Run Locally
 1️⃣ Clone the repository
@@ -154,3 +133,4 @@ UI improvements
 📌 Author
 
 Soujanya
+
